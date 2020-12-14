@@ -3,16 +3,72 @@
   src: url(hp.ttf);
 }
 
+@font-face {
+  font-family: Manuscrito;
+  src: url(manuscrito.ttf);
+}
+
+@font-face {
+  font-family: Writer;
+  src: url(writer.ttf);
+}
+
+.alinea-fotos {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 80%;
+}
+
 body {
+  background-image: url(../assets/foot.gif);
+  background-repeat: no-repeat;
+  background-position: top left;
   font-family: Arial;
 }
 
 h1 {
   font-family: Harry Potter;
   font-weight: 500;
-  font-size: 200px;
+  font-size: 150px;
   letter-spacing: 6px;
   margin: 0px;
+}
+
+.floating {
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 15px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  color: black;
+}
+
+p.writer {
+  font-size: 20px;
+  font-family: Writer;
+}
+
+.box_effect {
+  box-shadow: 25px 25px 15px gray;
 }
 
 h2 {
@@ -26,9 +82,13 @@ input {
 
 .text_sombrero {
   font-family: Harry Potter;
-  letter-spacing: 7px;
+  letter-spacing: 4px;
   font-size: 50px;
-  text-shadow: yellow 9px 9px 20px;
+}
+
+#look {
+  font-family: Manuscrito;
+  font-size: 70px;
 }
 
 .glow {
@@ -38,6 +98,19 @@ input {
 button {
   font-weight: bolder;
   border-radius: 1em;
+}
+
+.arriba {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.encantamientos {
+  font-family: Manuscrito;
+  font-size: 40px;
+  letter-spacing: 3px;
+  list-style: none;
 }
 
 select {

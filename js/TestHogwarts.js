@@ -1,3 +1,5 @@
+// REGISTRO Y ALMACENAMIENTO DE LOS DATOS
+
 $(document).ready(function () {
   $("#registro").click(function () {
     let nombre = $("#usuario").val();
@@ -14,11 +16,15 @@ $(document).ready(function () {
     }
   });
 
+  $("#look").hide();
+
   $("#escudo1").hide();
   $("#escudo2").hide();
   $("#escudo3").hide();
   $("#escudo4").hide();
 });
+
+// ARRAYS PARA SUMAR PUNTOS
 
 function CasaHogwarts() {
   this.caracteristicas = [];
@@ -28,57 +34,58 @@ function CasaHogwarts() {
   this.puntosS = 0;
   this.puntosH = 0;
 
-  // Test
+  // TEST DE 4 PREGUNTAS, LA 1 AL AZAR
 
-  $("#padre1").append(`<p>  La varita que te ha elegido es: </p>`).css({ "font-weight": "bolder", "font-size": "20px" });
+  $("#padre1").append(`<p> Una varita te elegirá al finalizar la prueba. Recuerda <i> observar. </i></p>`).css({ "font-weight": "bolder", "font-size": "20px" });
 
   this.preguntarVarita = function () {
     let respuestaVarita = Math.floor(Math.random() * 4);
+    let varas = $("#padre1").text(`Varita número ${respuestaVarita}, `);
 
     if (respuestaVarita == 0) {
       this.puntosG += 10;
       this.caracteristicas.push("Varita de fenix");
-      $("#padre1").append(`<p> Varita numero ${respuestaVarita}, Varita de fenix </p>`);
+      varas.append(`<p>de fenix </p>`);
     } else if (respuestaVarita == 1) {
       this.puntosR += 10;
       this.caracteristicas.push("Varita de dragon");
-      $("#padre1").append(`<p> Varita numero ${respuestaVarita}, Varita de dragon </p>`);
+      varas.append(`<p>de dragon </p>`);
     } else if (respuestaVarita == 2) {
       this.puntosH += 10;
       this.caracteristicas.push("Varita de unicornio");
-      $("#padre1").append(`<p> Varita numero ${respuestaVarita}, Varita de unicornio </p>`);
+      varas.append(`<p>de unicornio </p>`);
     } else if (respuestaVarita == 3) {
       this.puntosS += 10;
       this.caracteristicas.push("Varita de sauco");
-      $("#padre1").append(`<p> Varita numero ${respuestaVarita}, Varita de sauco </p>`);
+      varas.append(`<p>de sauco </p>`);
     }
   };
 
-  $("#padre2").append(`<p>  De estas cualidades, ¿Cuál te representa más?: </p>`).css({ "font-weight": "bolder", "font-size": "20px" });
+  $("<p>De estas cualidades, ¿Cuál te representa más?: </p>").prependTo($("#padre2")).css({ "font-weight": "bolder", "font-size": "20px" });
 
   this.preguntarPersona = function () {
     if ($("#respuesta2").val() == "valentia") {
       this.puntosG += 10;
       this.caracteristicas.push("valentia");
-      $("#padre2").append(`<p> 10 puntos para Gryffindor </p>`);
+      $("#enviar").append(`<p>10 puntos para Gryffindor </p>`);
     } else if ($("#respuesta2").val() == "sabiduria") {
       this.puntosR += 10;
       this.caracteristicas.push("sabiduria");
-      $("#padre2").append(`<p> 10 puntos para Ravenclaw </p>`);
+      $("#enviar").append(`<p> 10 puntos para Ravenclaw </p>`);
     } else if ($("#respuesta2").val() == "honestidad") {
       this.puntosH += 10;
       this.caracteristicas.push("honestidad");
-      $("#padre2").append(`<p> 10 puntos para Hufflepuff </p>`);
+      $("#enviar").append(`<p> 10 puntos para Hufflepuff </p>`);
     } else if ($("#respuesta2").val() == "ambicion") {
       this.puntosS += 10;
       this.caracteristicas.push("ambicion");
-      $("#padre2").append(`<p> 10 puntos para Slytherin </p>`);
+      $("#enviar").append(`<p> 10 puntos para Slytherin </p>`);
     } else {
       console.log("Solo se admiten las cualidades mencionadas: valentia, sabiduria, ambicion, honestidad");
     }
   };
 
-  $("#padre3").append(`<p> ¿Cuál es tu linaje? </p>`).css({ "font-weight": "bolder", "font-size": "20px" });
+  $("<p>¿Cuál es tu linaje? </p>").prependTo($("#padre3")).css({ "font-weight": "bolder", "font-size": "20px" });
 
   this.preguntarLinaje = function () {
     if ($("#respuesta3").val() == "padres magos") {
@@ -100,7 +107,7 @@ function CasaHogwarts() {
     }
   };
 
-  $("#padre4").append(`<p>  ¿Que reliquia eliges? </p>`).css({ "font-weight": "bolder", "font-size": "20px" });
+  $("<p>  ¿Que reliquia eliges? </p>").prependTo($("#padre4")).css({ "font-weight": "bolder", "font-size": "20px" });
 
   this.elijeReliquia = function () {
     switch ($("#respuesta4").val()) {
@@ -130,34 +137,27 @@ function CasaHogwarts() {
     }
   };
 
-  // Puntaje
+  // CALCULADORA DE PUNTAJES POR LAS OPCIONES ELEGIDAS
 
   this.saberCasa = function () {
     var resultadoFinal = Math.max(this.puntosG, this.puntosR, this.puntosH, this.puntosS);
+    let congrats = $("#enviar").text("¡Felicidades! Perteneces a ").css({ "font-size": "70px", "font-weight": "bolder", "font-family": "Harry Potter", "letter-spacing": "7px" });
 
     switch (resultadoFinal) {
       case this.puntosG:
-        $("#enviar")
-          .append(`<p> ¡Felicidades!  Perteneces a Gryffindor </p>`)
-          .css({ color: "red", "font-size": "70px", "font-weight": "bolder", "font-family": "Harry Potter", "letter-spacing": "7px" });
+        congrats.append(`<p>Gryffindor </p>`).css({ color: "red" });
         Escudo.mostrarEscudo();
         break;
       case this.puntosR:
-        $("#enviar")
-          .append(`<p> ¡Felicidades! Perteneces a Ravenclaw </p>`)
-          .css({ color: "blue", "font-size": "70px", "font-weight": "bolder", "font-family": "Harry Potter", "letter-spacing": "7px" });
+        congrats.append(`<p>Ravenclaw </p>`).css({ color: "blue" });
         Escudo.mostrarEscudo2();
         break;
       case this.puntosH:
-        $("#enviar")
-          .append(`<p> ¡Felicidades! Perteneces a Hufflepuff </p>`)
-          .css({ color: "brown", "font-size": "70px", "font-weight": "bolder", "font-family": "Harry Potter", "letter-spacing": "7px" });
+        congrats.append(`<p>Hufflepuff </p>`).css({ color: "brown" });
         Escudo.mostrarEscudo3();
         break;
       case this.puntosS:
-        $("#enviar")
-          .append(`<p> ¡Felicidades! Perteneces a Slytherin </p>`)
-          .css({ color: "green", "font-size": "70px", "font-weight": "bolder", "font-family": "Harry Potter", "letter-spacing": "7px" });
+        congrats.append(`<p>Slytherin </p>`).css({ color: "green" });
         Escudo.mostrarEscudo4();
         break;
       default:
@@ -169,6 +169,8 @@ function CasaHogwarts() {
   };
 }
 
+// LLAMADA A TODOS LOS METODOS CON EL BOTON SABER CASA
+
 let resultado = new CasaHogwarts();
 
 $("#saber-casa").click(function () {
@@ -177,7 +179,10 @@ $("#saber-casa").click(function () {
   resultado.preguntarLinaje();
   resultado.elijeReliquia();
   resultado.saberCasa();
+  $("#look").fadeIn(5000);
 });
+
+// ESCUDOS AL SALIR SEGUN RESULTADO
 
 let Escudo = new escudos();
 
@@ -196,38 +201,25 @@ function escudos() {
   };
 }
 // prettier-ignore
+// JSON CON CARACTERISTICAS DE CADA CASA
 
 $("#casas").click(function () {
-  gJSON = '{"Nombre": "Godric ", "Habilidades": "  Espadachín", "Animal": "  , León. " }';
-  rJSON = '{"Nombre": "Rowena", "Habilidades": "  Arquitectura mágica", "Animal": "  , Cuervo. "}';
-  hJSON = '{"Nombre": "Helga", "Habilidades": "  Encantamientos de Cocina", "Animal": "  , Tejon. " }';
-  sJSON = '{"Nombre": "Salazar", "Habilidades": "  Legeremancia", "Animal": "  , Serpiente. " }'; 
+  gJSON = '{"Nombre": "Godric ", "Habilidades": "  Tienes habilidades como espadachín", "Animal.": "El simbolo de tu Casa es el León. ", "Personalidad": "La personalidad de los magos que pertenecen a Gryffindor es muy marcada. Se trata de personas valientes y osadas, incluso tanto que a veces les hace imprudentes. No obstante, todos aquellos de Gryffindor también son personas templadas, caballerosas, grandes amigos y transparentes." }';
+  rJSON = '{"Nombre": "Rowena", "Habilidades": "  Tienes habilidades para la arquitectura mágica.", "Animal": "El simbolo de tu Casa es el Cuervo. ", "Personalidad": " Esta casa premia la sabiduría, el ingenio, el aprendizaje y el intelecto, así pues, todos sus integrantes tienen estas cualidades. Son estudiantes que tienden al talento, tienen ideas novedosas y originales, por ello no es raro encontrar entre los Ravenclaw a personalidades excéntricas, peculiares a inusuales."}';
+  hJSON = '{"Nombre": "Helga", "Habilidades": "  Tienes habilidades en encantamientos de Cocina.", "Animal": "El simbolo de tu Casa es el Tejon. ", "Personalidad": "Las personas de la casa Hufflepuff destacan por ser leales, justas y solidarias. Se trata de personas buenas y trabajadoras, que buscan la integración social y son simpáticos." }';
+  sJSON = '{"Nombre": "Salazar", "Habilidades": "  Tienes habilidad extraordinaria para la Legeremancia.", "Animal": "El simbolo de tu Casa es la Serpiente. ", "Personalidad": "Sus integrantes suelen ser astutos y ambiciosos, persiguen lo que quieren sin importar los medios. Inteligentes, líderes natos, con un gran sentido de la supervivencia." }'; 
 
   var gObjeto = JSON.parse(gJSON);
-  document.write(" - Gryffindor:  ");
-  document.write(gObjeto.Habilidades)
-  document.write(gObjeto.Animal);
+  $("#info_potter").append("GRYFFINDOR:  ", gObjeto.Habilidades, gObjeto.Animal, gObjeto.Personalidad)
   var rObjeto = JSON.parse(rJSON);
-  document.write(" - Ravenclaw:  ");
-  document.write(rObjeto.Habilidades);
-  document.write(rObjeto.Animal);
+  $("#info_potter").append("RAVENCLAW:  ", rObjeto.Habilidades, rObjeto.Animal, rObjeto.Personalidad)
   var hObjeto = JSON.parse(hJSON);
-  document.write(" - Hufflepuff:  ");
-  document.write(hObjeto.Habilidades);
-  document.write(hObjeto.Animal);
+  $("#info_potter").append("HUFFLEPUFF:  ", hObjeto.Habilidades, hObjeto.Animal, hObjeto.Personalidad)
   var sObjeto = JSON.parse(sJSON);
-  document.write(" - Slytherin:  ");
-  document.write(sObjeto.Habilidades);
-  document.write(sObjeto.Animal);
-
+  $("#info_potter").append("SLYTHERYN:  ", sObjeto.Habilidades, sObjeto.Animal, sObjeto.Personalidad)
 });
 
-$("#light").hide();
-
-$("#lumus").click(function () {
-  $("#hat").hide();
-  $("#light").fadeIn();
-});
+// AJAX DE PERSONAJES DE GRYFFINDOR
 
 $("#char").click(function () {
   $.ajax({
@@ -238,13 +230,131 @@ $("#char").click(function () {
       let getJson = response;
       getJson.forEach(function (chars) {
         $("#lista-de-personajes")
-          .append(`<li>${chars.name} , ${chars.species} , ${chars.gender} , ${chars.patronus}</li>`)
-          .css({ "font-size": "20px", "letter-spacing": "5px", "list-style": "none", margin: "23x" });
+          .append(
+            `<div> <p> ${chars.name} , ${chars.species} , ${chars.gender} , Patronus: ${chars.patronus}, House: ${chars.house}, Birth: ${chars.dateOfBirth} </p> <img src="${chars.image}" width="200" height="300" class="alinea-fotos"/> </div>`
+          )
+          .css({ "text-align": "left", "font-size": "20px", "list-style": "none", margin: "23x" });
       });
     },
   });
 });
 
+// MENSAJES DIVERTIDOS AL ESCRIBIR EN LOS INPUTS
+
+$(usuario).keypress(function () {
+  $(responde).text("Mmmm muy interesante...");
+});
+$(usuario).keyup(function () {
+  $(responde).text("Escribes como si pertenecieras a...");
+});
+$(usuario).keydown(function () {
+  $(responde).text("nono... mejor responde el test");
+});
+
+$(contrasena).keypress(function () {
+  $(responde).text("Para que nadie robe tu contraseña ¡Protego totalum!");
+});
+
+// BOTON DE REPETIR EL TEST, RECARGA LA PAGINA
+
 $("#repetir").click(function (e) {
   location.reload();
+});
+
+// BOTON LUMUS, CAMBIA GIF
+
+$("#light").hide();
+
+$("#lumus").click(function () {
+  $("#hat").hide();
+  $("#light").fadeIn();
+});
+
+// CAMBIA IMAGEN POR GIF Y REEMPLAZA TEXTO
+
+$("#treegif").hide();
+
+$("#correcta").click(function () {
+  $("#cambio_mje").replaceWith("<h2>¡Excelente!</h2>");
+  $("#tree").hide();
+  $("#treegif").show();
+});
+
+// MUSICA PARA ABRIR PUERTA, "ALOHOMORA"
+
+$("#doorOpen").hide();
+
+$("#notaFinal").click(function () {
+  $("#door").hide();
+  $("#doorOpen").show();
+});
+
+let context = new AudioContext();
+
+function notam(sonido) {
+  var o = context.createOscillator();
+  g = context.createGain();
+  o.connect(g);
+  o.type = "sawtooth";
+  o.frequency.value = sonido;
+  g.connect(context.destination);
+  o.start(0);
+  g.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 1.1);
+}
+
+// FUNCION DETECTA PATRONUS CON MATH RANDOM DE UN ARRAY
+
+$("#stag").hide();
+$("#horse").hide();
+$("#cat").hide();
+$("#squirrel").hide();
+
+var patronus = ["ciervo", "caballo", "gato", "ardilla"];
+
+function descubrePatronus() {
+  tuPatronus = patronus[Math.floor(Math.random() * patronus.length)];
+
+  switch (tuPatronus) {
+    case "ciervo":
+      $("#stag").fadeIn().delay(5000).fadeOut(1000);
+      $("#discover").replaceWith("<h2>Tu patronus es un ciervo</h2>");
+      break;
+    case "caballo":
+      $("#horse").fadeIn().delay(5000).fadeOut(1000);
+      $("#discover").replaceWith("<h2>Tu patronus es un caballo</h2>");
+      break;
+    case "gato":
+      $("#cat").fadeIn().delay(5000).fadeOut(1000);
+      $("#discover").replaceWith("<h2>Tu patronus es un gato</h2>");
+      break;
+    case "ardilla":
+      $("#squirrel").fadeIn().delay(5000).fadeOut(1000);
+      $("#discover").replaceWith("<h2>Tu patronus es una ardilla</h2>");
+      break;
+  }
+}
+// EFECTO DE ESCRITURA, MENSAJE DE ALBUS D.
+
+var i = 0;
+var texto =
+  "Son nuestras elecciones las que muestran lo que somos, mucho más que nuestras habilidades. Las palabras son, en mi no tan humilde opinión, nuestra más inagotable fuente de magia, capaces tanto de infringir daño como de remediarlo...";
+var speed = 50;
+
+function typeWriter() {
+  if (i < texto.length) {
+    document.getElementById("type").innerHTML += texto.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+// BOTON IR HACIA ARRIBA
+
+$(".arriba").click(function () {
+  $("body, html").animate(
+    {
+      scrollTop: "0px",
+    },
+    300
+  );
 });

@@ -5,68 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="css/hover-min.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="css/estilos.css" />
     <title>Javascript</title>
   </head>
   <body class="text-center">
-    <div>
-      <h1 class="test glow text-warning">Harry Potter</h1>
-      <img id="hat" class="m-2" src="assets/sortinghat.gif" width="50%" alt="sombreroseleccionador" />
-      <img id="light" class="m-2" src="assets/lumus.gif" width="90%" alt="spell" />
-    </div>
-    <button id="lumus" class="m-4 pl-5 pr-5 bg-dark text-white">¡Lumus!</button>
-    <div class="m-5">
-      <h2 class="text_sombrero p-3 m-3">El sombrero seleccionador pregunta:</h2>
+       <header>
+            <nav>
+            <h1 class="test glow text-warning floating">Harry Potter</h1>
+                <ul class="d-flex justify-content-center encantamientos">
+                   <a href="#test"><li class="m-2 pr-4">Test</li></a> 
+                   <a href="#juegos"><li class="m-2 pr-4">Juegos</li></a>
+                   <a href="#info"><li class="m-2 pr-4">Info</li></a>
+                </ul>
+            </nav>
+       </header>
+        <div>
+            <img id="hat" class="m-2 box_effect" src="assets/sortinghat.gif" width="50%" alt="sombreroseleccionador" />
+            <img id="light" class="m-2" src="assets/lumus.gif" width="85%" alt="spell" />
+        </div>
+    <button id="lumus" class="mt-5 pl-5 pr-5 bg-dark text-white">¡Lumus Máxima!</button>
+    <h2 class="text_sombrero p-3 m-3">El sombrero seleccionador pregunta:</h2>
       <label for="usuario">Usuario</label>
       <input id="usuario" type="text" class="m-3" />
       <label for="contrasena">Contraseña</label>
       <input id="contrasena" type="password" class="m-3" />
-      <button id="registro" class="p-2 bg-warning">¡Registrarme!</button>
+      <button id="registro" class="p-2 bg-warning">Registrarme</button>
+      <p id="responde"></p>
     </div>
-    <section class="m-5 border">
+    <p id="look" >Mira hacia abajo</p>
+    <section id="test" class="m-5 border">
       <div class="border p-4" id="padre1"></div>
       <div class="border" id="padre2">
-        <select class="m-3" type="select" id="respuesta2">
-          <option></option>
-          <option value="valentia">Valentia</option>
-          <option value="sabiduria">Sabiduria</option>
-          <option value="honestidad">Honestidad</option>
-          <option value="ambicion">Ambicion</option>
-        </select>
+          <select class="m-3" type="select" id="respuesta2">
+            <option></option>
+            <option value="valentia">Valentia</option>
+            <option value="sabiduria">Sabiduria</option>
+            <option value="honestidad">Honestidad</option>
+            <option value="ambicion">Ambicion</option>
+          </select>
       </div>
       <div class="border" id="padre3">
-        <select class="m-3" type="select" id="respuesta3">
-          <option></option>
-          <option value="padres magos">Padres Magos</option>
-          <option value="padres muggles">Padres Muggles</option>
-          <option value="madre muggle y padre mago">Madre Muggle y Padre Mago</option>
-          <option value="madre bruja y padre muggle">Madre Bruja y Padre Muggle</option>
-        </select>
+          <select class="m-3" type="select" id="respuesta3">
+            <option></option>
+            <option value="padres magos">Padres Magos</option>
+            <option value="padres muggles">Padres Muggles</option>
+            <option value="madre muggle y padre mago">Madre Muggle y Padre Mago</option>
+            <option value="madre bruja y padre muggle">Madre Bruja y Padre Muggle</option>
+          </select>
       </div>
       <div class="border" id="padre4">
-        <select class="m-3" type="select" id="respuesta4">
-          <option></option>
-          <option value="espada">Espada</option>
-          <option value="diadema">Diadema</option>
-          <option value="copa">Copa</option>
-          <option value="guardapelo">Guardapelo</option>
-        </select>
+          <select class="m-3" type="select" id="respuesta4">
+            <option></option>
+            <option value="espada">Espada</option>
+            <option value="diadema">Diadema</option>
+            <option value="copa">Copa</option>
+            <option value="guardapelo">Guardapelo</option>
+          </select>
       </div>
-        <button class="bg-dark text-white m-3 p-2" id="saber-casa">Enviar</button>
-        <button class="bg-warning m-3 p-2" id="repetir">Repetir</button>
+       <div>
+          <button class="bg-dark text-white m-3 p-2" id="saber-casa">Enviar</button>
+          <button class="bg-warning m-3 p-2" id="repetir">Repetir</button>
+        </div>
       </div>
     <div id="enviar"></div>
     <div class="mb-5">
-      <img src="assets/gry.jpg" id="escudo1" class="escudo" width="30%" />
-      <img src="assets/raven.jpg" id="escudo2" class="escudo" width="30%" />
-      <img src="assets/huff.jpg" id="escudo3" class="escudo" width="30%" />
-      <img src="assets/sly.jpg" id="escudo4" class="escudo" width="30%" />
+        <img src="assets/gry.jpg" id="escudo1" class="escudo" width="30%" />
+        <img src="assets/raven.jpg" id="escudo2" class="escudo" width="30%" />
+        <img src="assets/huff.jpg" id="escudo3" class="escudo" width="30%" />
+        <img src="assets/sly.jpg" id="escudo4" class="escudo" width="30%" />
     </div>
   </body>
-  <button class="p-2 m-2 info bg-dark text-white" id="casas">Habilidades y simbologia</button>
-  <button class="p-2 m-2 info bg-dark text-white" id="char">Personajes principales</button>
-  <ul id="lista-de-personajes"></ul>
+      <div id="juegos">
+           <button onclick="typeWriter()" class="m-3">Mensaje de Albus Dumbledore</button>
+           <p class="writer" id="type"></p>
+      </div>
+  <div>
+     <h2 class="p-5 bg-white" id="cambio_mje">Si sabes cuál es el encantamiento para traer la primavera, haz click en él</h2>
+        <ul class="encantamientos">
+            <li class="m-2">Sectumsempra</li>
+            <li class="m-2" id="correcta">Herbivicus</li>
+            <li class="m-2" >Obliviate</li>
+        </ul>
+            <img id="tree" src="./assets/tree.jpg">
+            <img id="treegif" src="./assets/tenor.gif">
+  </div>
+  <div class="m-5 p-5 bg-dark">
+        <img id="stag" src="./assets/stag.gif" width="50%" alt="patronus" >
+        <img id="horse" src="./assets/horse.gif" width="50%" alt="patronus" >
+        <img id="cat" src="./assets/cat.gif" width="50%" alt="patronus" >
+        <img id="squirrel" src="./assets/squirrel.gif" width="50%" alt="patronus" >
+    <button id="discover"  onclick="descubrePatronus()">Descubre tu Patronus</button>
+  </div>
+  <div class="m-5">
+      <h2>Abre la puerta con este hechizo</h2>
+       <p>Tocando las llaves</p>
+          <img id="doorOpen" src="./assets/door1.gif" width="500">
+          <img id="door" src="./assets/door.jpg" width="500">
+  </div>
+  <section class="d-flex justify-content-center mt-5 text_sombrero">
+      <img onclick="notam(164.814)" class="floating m-3" src="./assets/llaveA.jpg"  alt="llave" width="90"> A
+      <img onclick="notam(164.814)" class=" m-3" src="./assets/llaveL.jpg" alt="llave" width="100"> l
+      <img onclick="notam(233.082)" class="floating m-3" src="./assets/llaveO.jpg" alt="llave" width="90"> o
+      <img onclick="notam(277.183)" class=" m-3" src="./assets/llaveH.jpg" alt="llave" width="100"> h
+      <img onclick="notam(261.626)" class="floating m-3" src="./assets/llaveO2.jpg" alt="llave" width="90"> o
+      <img onclick="notam(233.082)" class=" m-3" src="./assets/llaveM.jpg" alt="llave" width="100"> m
+      <img onclick="notam(329.228)" class="floating m-3" src="./assets/llaveO3.jpg" alt="llave" width="90"> o
+      <img onclick="notam(293.665)" class=" m-3" src="./assets/llaveR.jpg" alt="llave" width="100"> r
+      <img onclick="notam(246.942)" id="notaFinal" class="floating m-3" src="./assets/llaveA2.jpg" alt="llave" width="90"> a
+  </section>
+  <div class="mt-5" id="info">
+      <h2>Conoce más acerca de Hogwarts</h2>
+      <button class="p-2 m-2 info bg-dark text-white hvr-float hvr-radial-out" id="casas">Habilidades y simbologia</button>
+       <div id="info_potter" class="m-5 text-left"></div>
+      <button class="p-2 m-2 info bg-dark text-white hvr-float hvr-radial-out" id="char">Personajes principales</button>
+  </div>
+  <div id="lista-de-habilidades"></div>
+  <div class="container">
+      <div id="lista-de-personajes"></div>
+      <img id="lista-de-imagenes" class="img-fluid rounded-circle" width="400"/>
+  </div>
+  <button class="arriba m-3 bg-danger text-white" >Ir arriba</button>
+  <i>&copy; Copyright 2020 - TinaZenghi. Todos los derechos reservados</i>
   <footer>
+    <script type="text/javascript" src="./app.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/TestHogwarts.js"></script>
