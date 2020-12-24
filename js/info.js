@@ -21,7 +21,7 @@ $("#casas").click(function () {
   
   $("#char").click(function () {
     $.ajax({
-      url: "http://hp-api.herokuapp.com/api/characters/house/gryffindor",
+      url: "https://hp-api.herokuapp.com/api/characters/house/gryffindor",
       dataType: "json",
       type: "get",
       success: function (response) {
